@@ -4,8 +4,14 @@
   Year:<%= figure.year %> <br />
   Toy Line:<%= figure.toyLine %> <br />
   Condition:<%= figure.condition %> <br />
-  Has packaging?: <%= figure.hasPackaging %> <br />
-  In my collection: <%= figure.doHave %> <br />
+  Has packaging?: 
+  <% if
+  (figure.hasPackaging === true) { %> True <% } else { %> False <% } %>
+  <br />
+  In my collection: <%= figure.doHave %> 
+  <% if
+  (figure.doHave === true) { %> True <% } else { %> False <% } %>
+  <br />
 <form action="/figures/<%= figure.id %>?_method=DELETE" method="POST">
   <button>Delete</button>
 </form>

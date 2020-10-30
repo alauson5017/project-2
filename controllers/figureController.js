@@ -18,16 +18,28 @@ router.get('/new', (req, res) => {
 });
 
 // SHOW Route
-router.get('/figures/:id', (req, res) => {
-    res.render('figures/show.ejs', {
-        figure: ActionFigure[req.params.id]
-    })
-})
+router.get('/:id', (req, res) => {
+    ActionFigure.findById(req.params.id, (err, foundFigure)=>{
+        res.render('figures/show.ejs', { figure: foundFigure });
+    });
+    });
 
-// CREATE A NEW figure
+// POST
 router.post('/', (req, res) => {
   ActionFigure.create(req.body, (error, newFigure) => {
-    res.send(newFigure);
+    if (req.body.hasPackaging === 'on') {
+        req.body.hasPackaging = true;
+    } else {
+        req.body.hasPackaging = false;
+    }
+    if (req.body.doHave === 'on') {
+        req.body.doHave = true;
+    } else {
+        req.body.doHave = false;
+    }
+    ActionFigure.create(req.body, (error, createdFigure)=>{
+        res.redirect('/figures');
+    });
   });
 });
 
@@ -44,7 +56,7 @@ router.put('/figures/:id', (req, res) => {
         req.body.doHave = false
     }
 	ActionFigure.findByIdAndUpdate(req.params.id, req.body, (error) => {
-        res.redirect('/figures');
+        res.redirect('/figures/');
     });
 })
 
