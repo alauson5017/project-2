@@ -1,0 +1,14 @@
+<h1>All Figures</h1>
+<ul>
+    <% figures.forEach(figure => { %>
+        <li>
+          <a href="figures/<%= figure.id %>"> <%= figure.name %> </a>
+          <form
+            action="figures/<%= figure.id %>?_method=DELETE"
+            method="POST"
+          >
+            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+          </form>
+        </li>
+        <% }) %>
+      </ul>

@@ -3,8 +3,9 @@
 //___________________
 const express = require('express');
 const methodOverride  = require('method-override');
+const expressLayouts = require('express-ejs-layouts')
 const mongoose = require ('mongoose');
-const app = express ();
+const app = express();
 const db = mongoose.connection;
 //___________________
 //Port
@@ -17,7 +18,12 @@ const PORT = process.env.PORT || 3000;
 // How to connect to the database either via heroku or locally
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/'+ 'PROJECT-2';
 // Connect to Mongo
-mongoose.connect(MONGODB_URI ,  { useNewUrlParser: true});
+mongoose.connect(MONGODB_URI ,{
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+  });
 // Error / success
 db.on('error', (err) => console.log(err.message + ' is Mongod not running?'));
 db.on('connected', () => console.log('mongo connected: ', MONGODB_URI));
@@ -29,6 +35,8 @@ db.on('open' , ()=>{});
 //___________________
 //use public folder for static assets
 app.use(express.static('public'));
+app.set('view engine', 'ejs');
+app.use(expressLayouts);
 // populates req.body with parsed info from forms - if no data from forms will return an empty object {}
 app.use(express.urlencoded({ extended: false }));// extended: false - does not allow nested objects in query strings
 app.use(express.json());// returns middleware that only parses JSON - may or may not need it depending on your project
@@ -38,8 +46,10 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 // Routes
 //___________________
 //localhost:3000
+app.use('/figures', require('./controllers/figureController'));
+
 app.get('/' , (req, res) => {
-  res.send('Hello World!');
+  res.render('index.ejs')
 });
 //___________________
 //Listener
