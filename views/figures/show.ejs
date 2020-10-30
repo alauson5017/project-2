@@ -1,0 +1,11 @@
+<h1>Action Figure Detail</h1>
+<p>
+  Name: <%= figure.name %> <br />
+  Year:<%= figure.year %> <br />
+  Toy Line:<%= figure.toyLine %> <br />
+  Condition:<%= figure.condition %> <br />
+  Has packaging?: <%= figure.hasPackaging %> <br />
+  In my collection: <%= figure.doHave %> <br />
+<form action="/figures/<%= figure.id %>?_method=DELETE" method="POST">
+  <button>Delete</button>
+</form>

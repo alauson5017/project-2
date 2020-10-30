@@ -51,6 +51,8 @@ app.use('/figures', require('./controllers/figureController'));
 app.get('/' , (req, res) => {
   res.render('index.ejs')
 });
+
+
 //___________________
 //Listener
 //___________________
