@@ -1,17 +1,43 @@
 <h1>Action Figure Detail</h1>
 <p>
-  Name: <%= figure.name %> <br />
-  Year:<%= figure.year %> <br />
-  Toy Line:<%= figure.toyLine %> <br />
-  Condition:<%= figure.condition %> <br />
-  Has packaging?: 
-  <% if
-  (figure.hasPackaging === true) { %> True <% } else { %> False <% } %>
-  <br />
-  In my collection: <%= figure.doHave %> 
-  <% if
-  (figure.doHave === true) { %> True <% } else { %> False <% } %>
-  <br />
+  Name:  <%= figure.name %> <br />
+  Year:  <%= figure.year %> <br />
+  Toy Line:  <%= figure.toyLine %> <br />
+  Condition:  <%= figure.condition %> <br />
+  Has packaging?:  <%= figure.hasPackaging %> <br />
+  In my collection:  <%= figure.doHave %> 
+
+  <h1>Accessories</h1>
+
+  <ul>
+    <% figure.accessories.forEach(accessory => { %>
+    <li>
+      <a href="/figures/<%= figure.id %>/accessories/<%= accessory.id %>/edit"
+        ><%= accessory.accessoryName %></a
+      >
+      <form
+        action="/figures/<%= figure.id %>/accessories/<%= accessory.id %>?_method=DELETE"
+        method="POST"
+      >
+        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+      </form>
+    </li>
+    <% }) %>
+  </ul>
+
+  <h2>Add Accessory</h2>
+  <form action="/figures/<%= figure.id %>/accessories" method="POST">
+    <div class="form-group">
+      <label for="accessoryName">Accessory Name</label>
+      <input type="text" class="form-control" id="accessoryName" name="accessoryName" />
+      <label for="doHave">Do I have it?</label>
+      <input type="checkbox" name="doHave" id="doHave" /><br />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+
 <form action="/figures/<%= figure.id %>?_method=DELETE" method="POST">
   <button>Delete</button>
 </form>
+<a href="/figures/<%= figure.id %>/edit">edit</a>

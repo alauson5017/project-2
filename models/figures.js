@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const accessorySchema = new mongoose.Schema(
     {
       accessoryName: String,
-      accessoryCondition: String,
-      doWant: Boolean,
+      // accessoryCondition: String,
+      // doWant: Boolean,
       doHave: Boolean,
     },
     { timestamps: true }

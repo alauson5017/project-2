@@ -43,8 +43,24 @@ router.post('/', (req, res) => {
   });
 });
 
+// CREATE Accessory EMBEDDED IN Figure
+router.post('/:figureId/accessories', (req, res) => {
+    console.log(req.body);
+    // store new song in memory with data from request body
+    const newAccessory = new Accessory({ accessoryName: req.body.accessoryName });
+    
+    // find album in db by id and add new song
+    ActionFigure.findById(req.params.figureId, (error, figure) => {
+        console.log('figure:', figure)
+        figure.accessories.push(newAccessory);
+        figure.save((err, figure) => {
+        res.redirect(`/figures/${figure.id}`);
+        });
+    });
+    });
+
 /// update route
-router.put('/figures/:id', (req, res) => { 
+router.put('/:id', (req, res) => { 
 	if(req.body.hasPackaging === 'on'){ 
 		req.body.hasPackaging = true
 	} else { 
@@ -56,7 +72,7 @@ router.put('/figures/:id', (req, res) => {
         req.body.doHave = false
     }
 	ActionFigure.findByIdAndUpdate(req.params.id, req.body, (error) => {
-        res.redirect('/figures/');
+        res.redirect('/figures');
     });
 })
 
@@ -64,8 +80,8 @@ router.put('/figures/:id', (req, res) => {
 router.get("/:id/edit", (req, res) => {
     ActionFigure.findById(req.params.id, (error, foundFigure) => {
         res.render('figures/edit.ejs', {
-        figure: foundFigure
-        });
+            figure: foundFigure
+            });
     })
     });
 

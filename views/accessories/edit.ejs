@@ -1,0 +1,18 @@
+<h1>Edit <%= figure.name %>'s Accessories</h1>
+<h4>Edit Song</h4>
+<form
+  action="/figures/<%= figure.id %>/accessories/<%= accessory.id %>?_method=PUT"
+  method="POST"
+>
+  <div class="form-group">
+    <label for="accessoryName">Accessory Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="accessoryName"
+      name="accessoryName"
+      value="<%= accessories.accessoryName %>"
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
