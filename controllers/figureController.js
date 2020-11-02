@@ -24,6 +24,20 @@ router.get('/:id', (req, res) => {
     });
     });
 
+// delete route for Figure
+router.delete('/:figureId', (req, res) => {
+    // console.log('DELETE figure');
+    // set the value of the figure and accessory ids
+    const figureId = req.params.figureId;
+
+    // find figure in db by id
+    ActionFigure.findById(figureId, (err, foundFigure) => {
+      foundFigure.remove();
+        res.redirect('/figures');
+    });
+  });
+
+
 // POST
 router.post('/', (req, res) => {
   ActionFigure.create(req.body, (error, newFigure) => {
@@ -46,10 +60,10 @@ router.post('/', (req, res) => {
 // CREATE Accessory EMBEDDED IN Figure
 router.post('/:figureId/accessories', (req, res) => {
     console.log(req.body);
-    // store new song in memory with data from request body
+    // store new accessory in memory with data from request body
     const newAccessory = new Accessory({ accessoryName: req.body.accessoryName });
     
-    // find album in db by id and add new song
+    // find figure in db by id and add new accessory
     ActionFigure.findById(req.params.figureId, (error, figure) => {
         console.log('figure:', figure)
         figure.accessories.push(newAccessory);
@@ -83,6 +97,23 @@ router.get("/:id/edit", (req, res) => {
             figure: foundFigure
             });
     })
+    });
+
+router.delete('/:figureId/accessories/:accessoryId', (req, res) => {
+
+    // set the value of the figure and accessory ids
+    const figureId = req.params.figureId;
+    const accessoryId = req.params.accessoryId;
+    
+    // find figure in db by id
+    ActionFigure.findById(figureId, (err, foundFigure) => {
+        // find accessory embedded in figure
+        foundFigure.accessories.id(accessoryId).remove();
+        // update accessory text and completed with data from request body
+        foundFigure.save((err, savedFigure) => {
+        res.redirect(`/figures/${foundFigure.id}`);
+        });
+    });
     });
 
 module.exports = router;
