@@ -1,4 +1,15 @@
 const mongoose = require('mongoose');
+
+var imageSchema = new mongoose.Schema({ 
+  name: String, 
+  // desc: String, 
+  image: 
+  { 
+      data: Buffer, 
+      contentType: String 
+  } 
+}); 
+
 const accessorySchema = new mongoose.Schema(
     {
       accessoryName: String,
@@ -19,10 +30,12 @@ const accessorySchema = new mongoose.Schema(
     //   doWant: Boolean,
       doHave: Boolean,
       accessories: [accessorySchema],
+      image: [imageSchema]
     },
     { timestamps: true }
   );
 
-const ActionFigure = mongoose.model('ActionFigure', figureSchema);
-const Accessory = mongoose.model('Accessory', accessorySchema);
-module.exports = { ActionFigure, Accessory };
+  const Accessory = mongoose.model('Accessory', accessorySchema);
+  const Image = mongoose.model('Image', imageSchema);
+  const ActionFigure = mongoose.model('ActionFigure', figureSchema);
+module.exports = { ActionFigure, Accessory , Image };

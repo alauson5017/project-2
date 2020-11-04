@@ -1,18 +1,25 @@
 <h1>Edit <%= figure.name %>'s Accessories</h1>
-<h4>Edit Song</h4>
+<h4>Edit Accessory</h4>
 <form
   action="/figures/<%= figure.id %>/accessories/<%= accessory.id %>?_method=PUT"
   method="POST"
 >
   <div class="form-group">
-    <label for="accessoryName">Accessory Name</label>
-    <input
-      type="text"
-      class="form-control"
-      id="accessoryName"
-      name="accessoryName"
-      value="<%= accessories.accessoryName %>"
-    />
+    <span>
+        <label for="accessoryName">Accessory Name
+        <input
+        type="text"
+        class="form-control"
+        id="accessoryName"
+        name="accessoryName"
+        value="<%= accessory.accessoryName %>"
+        /></label>
+        <label for="doHave">Do I have it?</label>
+        <input type="checkbox" name="doHave" id="doHave" <% if
+        (accessory.doHave === true) { %> checked <% } %> />
+    </label>
+    </span>
   </div>
+  <br />
   <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+  </form>

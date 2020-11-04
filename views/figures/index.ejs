@@ -1,15 +1,27 @@
 <h1>All Figures</h1>
 <ul>
-    <% figures.forEach(figure => { %>
-        <li>
-          <a href="figures/<%= figure.id %>"> <%= figure.name %> </a>
-          <form
-            action="figures/<%= figure.id %>?_method=DELETE"
-            method="POST"
-          >
-            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-          </form>
-          <a href="/figures/<%= figure.id %>/edit">edit</a>
-        </li>
-        <% }) %>
-      </ul>
+  <% figures.forEach(figure => { %>
+      <li>
+        <a href="figures/<%= figure.id %>"> <%= figure.name %> </a>
+        <form
+          action="figures/<%= figure.id %>?_method=DELETE"
+          method="POST"
+        >
+          <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+        </form>
+        <a href="/figures/<%= figure.id %>/edit">edit</a>
+      </li>
+      <% }) %>
+    </ul>
+
+    <!-- <div class="grid-container">
+      <div class="grid-item"><a href="figures/<%= figure.id %>"> <%= figure.name %> </a></div>
+      <div class="grid-item">2</div>
+      <div class="grid-item">3</div>
+      <div class="grid-item">4</div>
+      <div class="grid-item">5</div>
+      <div class="grid-item">6</div>
+      <div class="grid-item">7</div>
+      <div class="grid-item">8</div>
+      <div class="grid-item">9</div>
+    </div> -->

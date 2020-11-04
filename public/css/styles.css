@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css?family=Antic+Slab&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Antic Slab", serif;   
+}
+
+body::after {
+  content: "";
+  background: url(https://cdn.shopify.com/s/files/1/0020/6123/8339/products/2072296915011_1200x.jpg);
+  opacity: 0.4;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* body {
+  background: url(https://images.clipartlogo.com/files/istock/previews/8741/87414357-apple-seamless-pastel-colors-pattern-fruits-texture-background.jpg);
+  margin: 0;
+  font-family: "Comfortaa", cursive;
+} */
+
+h1 {
+  font-family: "Antic Slab", serif;
+  /* background: antiquewhite; */
+  margin: 0;
+  margin-bottom: 0.5em;
+  padding: 1em;
+  text-align: center;
+}
+span {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+span div {
+    
+    padding: 30px;
+   max-width: 40%;
+}
+
+a {
+  color: cornflowerblue;
+  text-decoration: none;
+  text-shadow: 1px 1px 1px black;
+  font-size: 1.5em;
+  background: rgba(193, 235, 187, 0.9);
+  /* padding: .25em;
+  margin: .5em; */
+}
+
+a:hover {
+  color: ghostwhite;
+}
+
+li {
+  list-style: none;
+}
+
+li a {
+  color: blue;
+}
+
+form{
+  margin-left: 10px;
+  display: flex;
+}
+
+input[type="text"] {
+max-width: 300px;
+  padding: 0.3em;
+  margin: 5px;
+}
+
+input[type="submit"] {
+  padding: 0.3em;
+  max-height: 40px;
+  color: paleturquoise;
+  background: steelblue;
+  font-size: 1em;
+  border-radius: 10%;
+}
+
+.grid-container {
+  display: grid;
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
+}

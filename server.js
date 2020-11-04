@@ -7,6 +7,9 @@ const expressLayouts = require('express-ejs-layouts')
 const mongoose = require ('mongoose');
 const app = express();
 const db = mongoose.connection;
+
+var multer  = require('multer')
+var upload = multer({ dest: 'images/' })
 //___________________
 //Port
 //___________________
@@ -49,6 +52,7 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 app.use('/figures', require('./controllers/figureController'));
 
 app.get('/' , (req, res) => {
+    
   res.render('index.ejs')
 });
 

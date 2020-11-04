@@ -1,43 +1,64 @@
-<h1>Action Figure Detail</h1>
-<p>
-  Name:  <%= figure.name %> <br />
-  Year:  <%= figure.year %> <br />
-  Toy Line:  <%= figure.toyLine %> <br />
-  Condition:  <%= figure.condition %> <br />
-  Has packaging?:  <%= figure.hasPackaging %> <br />
-  In my collection:  <%= figure.doHave %> 
-
-  <h1>Accessories</h1>
-
-  <ul>
-    <% figure.accessories.forEach(accessory => { %>
-    <li>
-      <a href="/figures/<%= figure.id %>/accessories/<%= accessory.id %>/edit"
-        ><%= accessory.accessoryName %></a
-      >
-      <form
-        action="/figures/<%= figure.id %>/accessories/<%= accessory.id %>?_method=DELETE"
-        method="POST"
-      >
-        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-      </form>
-    </li>
-    <% }) %>
-  </ul>
-
-  <h2>Add Accessory</h2>
-  <form action="/figures/<%= figure.id %>/accessories" method="POST">
-    <div class="form-group">
-      <label for="accessoryName">Accessory Name</label>
-      <input type="text" class="form-control" id="accessoryName" name="accessoryName" />
-      <label for="doHave">Do I have it?</label>
-      <input type="checkbox" name="doHave" id="doHave" /><br />
+<h1><%= figure.name %> </h1>
+<span>
+    <div>
+        <br />Name:  <%= figure.name %>
+        <br />Year:  <%= figure.year %> 
+        <br />Toy Line:  <%= figure.toyLine %> 
+        <br />In my collection:  <%= figure.doHave %>
+        <br /><a href="/figures/<%= figure.id %>/edit">edit</a>
+        <br />
+        <form action="/figures/<%= figure.id %>?_method=DELETE" method="POST">
+            <button type="submit" class="btn btn-danger btn-sm">Delete <%= figure.name %></button>
+        </form>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+    <div> 
+        <h2><%= figure.name %>'s Accessories</h1>
+        <ul>
+            <% figure.accessories.forEach(accessory => { %>
+                <li>
+                    <a href="/figures/<%= figure.id %>/accessories/<%= accessory.id %>/edit"><%= accessory.accessoryName %></a>
+                    <form
+                        action="/figures/<%= figure.id %>/accessories/<%= accessory.id %>?_method=DELETE"
+                        method="POST">
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+</span>
+<span>
+    <div> 
+        <ul>
+            <% figure.image.forEach(image => { %>
+                <li>
+                    <img src="../../uploads/<%= image.name %>">
+                </li>
+            <% }) %>
+        </ul>
 
+        <form action="/figures/<%= figure.id %>" method="POST">
+            <div class="form-group">
+                <label for="image">Upload Image</label> 
+                <input type="text" id="name" 
+                name="name" value=""> 
+                <input type="file" id="image" 
+                       name="image" value=""> 
+                <input type="submit" class="btn btn-primary"></input>
+            </div>
+        </form>
+    </div> 
+    <div>
+        <h2>Add Accessory</h2>
+        <form action="/figures/<%= figure.id %>/accessories" method="POST">
+            <div class="form-group">
+            <label for="accessoryName">Accessory Name</label>
+            <input type="text" class="form-control" id="accessoryName" name="accessoryName" />
+            <label for="doHave">Do I have it?</label>
+            <input type="checkbox" name="doHave" id="doHave" /><br />
+            <input type="submit" class="btn btn-primary"></input>
+            </div>
+        </form>
+    </div>
+</span>
 
-<form action="/figures/<%= figure.id %>?_method=DELETE" method="POST">
-  <button>Delete</button>
-</form>
-<a href="/figures/<%= figure.id %>/edit">edit</a>
