@@ -38,6 +38,7 @@ const accessorySchema = new mongoose.Schema(
   );
 
   const Accessory = mongoose.model('Accessory', accessorySchema);
-  const Image = mongoose.model('Image', imageSchema);
+  // const Image = mongoose.model('Image', imageSchema);
   const ActionFigure = mongoose.model('ActionFigure', figureSchema);
-module.exports = { ActionFigure, Accessory , Image };
+// module.exports = { ActionFigure, Accessory , Image };
+module.exports = { ActionFigure, Accessory };

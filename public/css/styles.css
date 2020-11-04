@@ -15,8 +15,9 @@ body::after {
   right: 0;
   position: absolute;
   z-index: -1;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-size: cover;
+  
 }
 
 /* body {
@@ -36,12 +37,12 @@ h1 {
 span {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-}
-span div {
-    
-    padding: 30px;
+    justify-content: space-evenly;
+  }
+  span div {
+  padding: 30px;
    max-width: 40%;
+   min-width: 500px;
 }
 
 a {
@@ -66,9 +67,9 @@ li {
   color: blue;
 } */
 
-form{
+form {
   margin-left: 10px;
-  display: flex;
+  /* display: flex; */
 }
 
 input[type="text"] {
@@ -105,6 +106,8 @@ input[type="submit"] {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #4CAF50;
-  color: white;
+  color: paleturquoise;
+  background: steelblue;
+  /* background-color: #4CAF50;
+  color: white; */
 }

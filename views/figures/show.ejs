@@ -1,7 +1,7 @@
 <h1><%= figure.name %> </h1>
 <span>
     <div>
-        <br />Name:  <%= figure.name %>
+        Name:  <%= figure.name %>
         <br />Year:  <%= figure.year %> 
         <br />Toy Line:  <%= figure.toyLine %> 
         <br />In my collection:  <%= figure.doHave %>
@@ -30,11 +30,15 @@
 <span>
     <div> 
         <ul>
-            <% if (figure.image.length > 0) { %>
-                <li>
-                    <img src="../..<%=figure.image[0].src%>" width="90%">
-                </li>
-                <% } %>
+            <% if(figure.image.length > 0) { %>
+                <% figure.image.forEach((image)=> { %>
+                    <%   if (image.imgType === "main") {  %>
+                    <li>
+                        <img src="../..<%= image.src %>" max-width="300px">
+                    </li>
+                    <% } %>
+                <% }); %>
+            <% } %>
         </ul>
 
         <form action="/figures/<%= figure.id %>" method="POST" enctype="multipart/form-data">

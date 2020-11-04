@@ -3,7 +3,7 @@ const ActionFigure = require('../models/figures').ActionFigure;
 const Accessory = require('../models/figures').Accessory;
 const ToyLine = require('../models/toyLines').ToyLine;
 // const Image = require('../models/figures').Image;
-const Image = require('../models/figures').Image; 
+const Image = require('../models/image').Image; 
 // var multer  = require('multer')
 // var upload = multer({ dest: '../public/images/' })
 const fs = require('fs'); 
@@ -122,9 +122,6 @@ router.post('/:figureId/accessories', (req, res) => {
 // // CREATE Image EMBEDDED IN Figure
 // Uploading the image 
 router.post('/:id', upload.single('image'), (req, res, next) => { 
-    console.log('req.file', req.file)
-    console.log('req.file.path', req.file.path)
-    console.log("path.join( root+ '/uploads/' + req.file.filename)",path.join( root+ '/uploads/' + req.file.filename) )
     const imgObj = {
         src: path.join( '/uploads/' + req.file.filename),
         contentType: req.file.mimetype,
