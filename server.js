@@ -38,6 +38,7 @@ db.on('open' , ()=>{});
 //___________________
 //use public folder for static assets
 app.use(express.static('public'));
+app.use('/uploads', express.static('uploads'))
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
 // populates req.body with parsed info from forms - if no data from forms will return an empty object {}

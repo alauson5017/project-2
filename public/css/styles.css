@@ -62,9 +62,9 @@ li {
   list-style: none;
 }
 
-li a {
+/* li a {
   color: blue;
-}
+} */
 
 form{
   margin-left: 10px;
@@ -86,8 +86,25 @@ input[type="submit"] {
   border-radius: 10%;
 }
 
-.grid-container {
-  display: grid;
-  grid-column-gap: 5px;
-  grid-row-gap: 5px;
+#actionFigures {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#actionFigures td, #actionFigures th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#actionFigures tr:nth-child(even){background-color: #f2f2f2;}
+
+#actionFigures tr:hover {background-color: #ddd;}
+
+#actionFigures th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
 }

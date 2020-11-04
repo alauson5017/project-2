@@ -3,7 +3,7 @@ const ActionFigure = require('../models/figures').ActionFigure;
 const Accessory = require('../models/figures').Accessory;
 const ToyLine = require('../models/toyLines').ToyLine;
 // const Image = require('../models/figures').Image;
-const Image = require('../models/image').Image; 
+const Image = require('../models/figures').Image; 
 // var multer  = require('multer')
 // var upload = multer({ dest: '../public/images/' })
 const fs = require('fs'); 
@@ -22,15 +22,11 @@ const storage = multer.diskStorage({
 }); 
   
 const upload = multer({ storage: storage });
-
+const root = path.dirname(require.main.filename)
+console.log("root", root)
 // INDEX Route
 router.get('/', (req, res)=>{
 
-
-
-
-
-    
     ActionFigure.find({}, (error, allFigures)=>{
         res.render('figures/index.ejs', {
             figures: allFigures
@@ -71,22 +67,11 @@ router.get('/new', (req, res) => {
         });
     })
 });
-// Retriving the image 
-router.get('/images/:imageId', (req, res) => { 
-    Image.find(req.body.image.id, (err, items) => { 
-        if (err) { 
-            console.log(err); 
-        } 
-        else { 
-            res.render('router', { items: items }); 
-        } 
-    }); 
-}); 
+
 
 // SHOW Route
 router.get('/:id', (req, res) => {
     ActionFigure.findById(req.params.id, (err, foundFigure)=>{
-        // console.log('foundFigure',foundFigure)
         res.render('figures/show.ejs', { figure: foundFigure });
     });
     });
@@ -106,43 +91,21 @@ router.delete('/:figureId', (req, res) => {
 
 // POST
 router.post('/', (req, res) => {
-// router.post('/', upload.single('image'), function (req, res, next) {
-//   ActionFigure.create(req.body, (error, newFigure) => {
-    //   console.log('body', req.body)
+      console.log('body', req.body)
       
       if (req.body.doHave === 'on') {
           req.body.doHave = true;
-      } else {
-          req.body.doHave = false;
-      }
-    // const obj= { 
-    //     name: req.body.name, 
-    //     toyLine: req.body.toyLine,
-    //     year: req.body.year,
-    //     doHave: req.body.doHave, 
-    //     image: { 
-    //         data: fs.readFileSync(path.join('./uploads/' + req.file.filename)), 
-    //         contentType: 'image/png'
-    //     } 
-    // } 
-    // console.log('obj',obj)
-
-
-    // var image = new Buffer.from(req.body.image, 'base64');//Convert to base64
-    // if (req.body.hasPackaging === 'on') {
-    //     req.body.hasPackaging = true;
-    // } else {
-    //     req.body.hasPackaging = false;
-    // }
-    ActionFigure.create(req.body, (error, createdFigure)=>{
+        } else {
+            req.body.doHave = false;
+        }
+        
+        ActionFigure.create(req.body, (error, createdFigure)=>{
         res.redirect('/figures');
-    });
   });
-// });
+});
 
 // CREATE Accessory EMBEDDED IN Figure
 router.post('/:figureId/accessories', (req, res) => {
-    console.log(req.body);
     // store new accessory in memory with data from request body
     const newAccessory = new Accessory({ accessoryName: req.body.accessoryName });
     
@@ -159,56 +122,22 @@ router.post('/:figureId/accessories', (req, res) => {
 // // CREATE Image EMBEDDED IN Figure
 // Uploading the image 
 router.post('/:id', upload.single('image'), (req, res, next) => { 
-    console.log('image body', req.body)
-    var obj = { 
-        name: req.body.name, 
-        // desc: req.body.desc, 
-        img: { 
-            data: fs.readFileSync(path.join(__dirname + '/../uploads/' + req.file.filename)), 
-            contentType: 'image/png'
-        } 
-    } 
-    Image.create(obj, (err, item) => { 
-        if (err) { 
-            console.log(err); 
-        } 
-        else { 
-            // item.save(); 
-            // res.redirect('/'); 
-    //     } 
-    // }); 
+    console.log('req.file', req.file)
+    console.log('req.file.path', req.file.path)
+    console.log("path.join( root+ '/uploads/' + req.file.filename)",path.join( root+ '/uploads/' + req.file.filename) )
+    const imgObj = {
+        src: path.join( '/uploads/' + req.file.filename),
+        contentType: req.file.mimetype,
+        imgType: "main"
+    }
+    ActionFigure.findOneAndUpdate({"_id": req.params.id},
+    {$set: {"image": imgObj}}, (error) => {
+   
+ 
+            res.redirect(`/figures/${req.params.id}`);
+        });
+    });
 
-    // ActionFigure.create(obj, (err, item) => { 
-        ActionFigure.findById(req.params.id, (error, figure) => {
-            // console.log('figure:', figure)
-            figure.image.push(item);
-            figure.save((err, figure) => {
-                res.redirect(`/figures/${figure.id}`);
-            });
-        // } 
-    }); 
-}
-});
-});
-// router.post('/', upload.single('image'), (req, res, next) => {
-//     var obj = { 
-//         name: req.body.name, 
-//         desc: req.body.desc, 
-//         img: { 
-//             data: fs.readFileSync(path.join(__dirname + '/images/' + req.file.filename)), 
-//             contentType: 'image/png'
-//         } 
-//     } 
-//     imgModel.create(obj, (err, item) => { 
-//         if (err) { 
-//             console.log(err); 
-//         } 
-//         else { 
-//             // item.save(); 
-//             res.redirect('/'); 
-//         } 
-//     }); 
-// }); 
 
 /// update route
 router.put('/:id', (req, res) => { 
@@ -246,18 +175,6 @@ router.put('/:figureId/accessories/:accessoryId', (req, res) => {
     } else { 
         req.body.doHave = false
     }
-        
-        console.log('req.body', req.body)
-        // console.log('accessoryId', accessoryId)
-        // console.log('final', ActionFigure.findOne({"_id": figureId, "accessories._id": accessoryId}))
-
-
-
-    // ActionFigure.findOneAndUpdate({"_id": figureId, "accessories._id": accessoryId},
-    // {$set: {"accessories.$.accessoryName": req.body.accessoryName}}, (error) => {
-    //             res.redirect(`/figures/${req.params.figureId}`);
-    //         });
-
 
     ActionFigure.findOneAndUpdate({"_id": figureId, "accessories._id": accessoryId},
     {$set: {"accessories.$.accessoryName": req.body.accessoryName,"accessories.$.doHave": req.body.doHave}}, (error) => {

@@ -1,13 +1,15 @@
 const mongoose = require('mongoose');
 
 var imageSchema = new mongoose.Schema({ 
-  name: String, 
+  // name: String, 
   // desc: String, 
-  image: 
-  { 
-      data: Buffer, 
-      contentType: String 
-  } 
+  src: String,
+  contentType: String,
+  imgType: String
+  // { 
+  //     data: Buffer, 
+  //     contentType: String 
+  // } 
 }); 
 
 const accessorySchema = new mongoose.Schema(

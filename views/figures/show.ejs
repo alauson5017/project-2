@@ -30,14 +30,14 @@
 <span>
     <div> 
         <ul>
-            <% figure.image.forEach(image => { %>
+            <% if (figure.image.length > 0) { %>
                 <li>
-                    <img src="../../uploads/<%= image.name %>">
+                    <img src="../..<%=figure.image[0].src%>" width="90%">
                 </li>
-            <% }) %>
+                <% } %>
         </ul>
 
-        <form action="/figures/<%= figure.id %>" method="POST">
+        <form action="/figures/<%= figure.id %>" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="image">Upload Image</label> 
                 <input type="text" id="name" 

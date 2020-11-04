@@ -1,42 +1,9 @@
 <h1>Add New Action Figure</h1>
-<form action='/figures' method="POST" enctype="multipart/form-data">
+<form action='/figures' method="POST" >
 <div class="form-group">
     <label for="name">Name</label>
     <input type="text" class="form-control" id="name" name="name" />
-    <!-- <label for="image">Upload Image</label>
-    <input type='file' name='image' id="image"/><br /> -->
-    <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-  <!-- </form> -->
-            <!-- <form action="/" method="POST" enctype="multipart/form-data">  -->
-            <!-- <div> 
-                <label for="name">Image Title</label> 
-                <input type="text" id="name" placeholder="Name" 
-                       value="" name="name" required> 
-            </div>  -->
-            <!-- <div> 
-                <label for="desc">Image Description</label> 
-                <textarea id="desc" name="pesc" value="" rows="2" 
-                          placeholder="Description" required> 
-                </textarea> 
-            </div>  -->
-            <!-- <div>  -->
-                <!-- <label for="image">Upload Image</label> 
-                <input type="file" id="image" 
-                       name="image" value="">  -->
-            <!-- </div>  -->
-            <!-- <div> 
-                <input type="submit"></input> 
-            </div>  -->
-        <!-- </form>  -->
-<!-- <form action="/figures" method="POST"> -->
     
-    <!-- <label for="image">Image</label>
-    <input type="file" id="image" name ="image" multiple="multiple" accept="image/*" /> -->
-
-    <!-- <label for="year">Year</label>
-    <input type="text" class="form-control" id="year" name="year" /> -->
-    <!-- <label for="condition">Condition</label>
-    <input type="text" class="form-control" id="condition" name="condition" /> -->
     <select class="selectpicker" data-style="btn-info" name="toyLine" id="toyLine">
         <optgroup label="Select Table">
             <option value="">Select Toy Line</option>
@@ -56,22 +23,10 @@
         </optgroup>
         <% }); %>
      </select>
-
-
-
-    <!-- <label for="toyLine">Toy Line</label>
-    <input type="text" class="form-control" id="toyLine" name="toyLine" /> -->
-
-    <!-- <label for="hasPackaging">Has Packaging?</label>
-    <input type="checkbox" name="hasPackaging" id="hasPackaging" /><br /> -->
-    <!-- <label for="doWant">Do I want it?</label>
-    <input type="checkbox" name="doWant" id="doWant" /><br /> -->
+     
     <label for="doHave">In my collection?</label>
     <input type="checkbox" name="doHave" id="doHave" /><br />
-  
-    
-    
-    <input type="submit" class="btn btn-primary"></input>
+    <input type="submit" class="btn btn-primary">
 </div>
 </form>
 
