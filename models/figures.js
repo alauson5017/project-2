@@ -1,22 +1,14 @@
 const mongoose = require('mongoose');
 
 var imageSchema = new mongoose.Schema({ 
-  // name: String, 
-  // desc: String, 
   src: String,
   contentType: String,
   imgType: String
-  // { 
-  //     data: Buffer, 
-  //     contentType: String 
-  // } 
 }); 
 
 const accessorySchema = new mongoose.Schema(
     {
       accessoryName: String,
-      // accessoryCondition: String,
-      // doWant: Boolean,
       doHave: Boolean,
       image: [imageSchema]
     },
@@ -30,7 +22,6 @@ const accessorySchema = new mongoose.Schema(
       condition: String,
       toyLine: String,
       hasPackaging: Boolean,
-    //   doWant: Boolean,
       doHave: Boolean,
       accessories: [accessorySchema],
       image: [imageSchema]
@@ -39,7 +30,5 @@ const accessorySchema = new mongoose.Schema(
   );
 
   const Accessory = mongoose.model('Accessory', accessorySchema);
-  // const Image = mongoose.model('Image', imageSchema);
   const ActionFigure = mongoose.model('ActionFigure', figureSchema);
-// module.exports = { ActionFigure, Accessory , Image };
 module.exports = { ActionFigure, Accessory };

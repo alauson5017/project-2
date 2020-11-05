@@ -26,8 +26,6 @@
     </div>
     <div>
         <h2><%= figure.name %>'s Accessories</h1>
-
-            <!-- ////////////////// -->
             <table id="actionFigures">
                 <tr>
                     <th>Image</th>
@@ -39,8 +37,7 @@
                 <% figure.accessories.forEach(accessory => { %>
                 <tr>
                     <td>
-                        <% if (accessory.image.length > 0) { %>
-
+                        <% if (accessory.image[0].src !== undefined) { %>
                         <li>
                             <center><img src="../..<%= accessory.image[0].src %>" width="100px" height="100px"></center>
                         </li>
@@ -64,29 +61,18 @@
     <div>
         <ul>
             <% if(figure.image.length > 0) { %>
-            <% figure.image.forEach((image)=> { %>
-            <%   if (image.imgType === "main") {  %>
-            <li>
-                <center><img src="../..<%= image.src %>" height="300px"></center>
-            </li>
-            <% } %>
-            <% }); %>
+                <% figure.image.forEach((image)=> { %>
+                    <%   if (image.imgType === "main") {  %>
+                        <li>
+                            <center><img src="../..<%= image.src %>" height="300px"></center>
+                        </li>
+                    <% } %>
+                <% }); %>
             <% } %>
         </ul>
-
-
     </div>
     <div>
         <h2>Add Accessory</h2>
-        <!-- <form action="/figures/figure.id %>/accessories" method="POST">
-            <div class="form-group">
-            <label for="accessoryName">Accessory Name</label>
-            <input type="text" class="form-control" id="accessoryName" name="accessoryName" />
-            <label for="doHave">Do I have it?</label>
-            <input type="checkbox" name="doHave" id="doHave" /><br />
-            <input type="submit" class="btn btn-primary"></input>
-            </div>
-        </form> -->
         <form action="/figures/<%= figure.id %>/accessories" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="accessoryName">Accessory Name</label>
@@ -94,8 +80,6 @@
                 <label for="doHave">Do I have it?</label>
                 <input type="checkbox" name="doHave" id="doHave" /><br />
                 <label for="image">Upload Image</label>
-                <!-- <input type="text" id="name" 
-                name="name" value="">  -->
                 <input type="file" id="image" name="image" value="">
                 <input type="submit" class="btn btn-primary">
             </div>

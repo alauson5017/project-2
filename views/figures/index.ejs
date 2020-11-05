@@ -1,36 +1,32 @@
 <h1>All Figures</h1>
-
-
-    <table id="actionFigures">
-      <tr>
-        <th>Image</th>
-        <th>Name</th>
-        <th>Toy Line</th>
-        <th>Year</th>
-        <th>In Collection?</th>
-        <th></th>
-        <th></th>
-      </tr>
-    <% figures.forEach(figure => { %>
-      <tr>
-        <td>           
-          <% if (figure.image[0].src !== undefined) { %>
-          <li>
-              <center><img src="../..<%=figure.image[0].src %>" width="100px" </center>
-          </li>
-          <% } %></td>
-        <td><%= figure.name %></td>
-        <td><%= figure.toyLine %></td>
-        <td><%= figure.year %></td>
-        <td><%= figure.doHave %></td>
-        <td><a href="figures/<%= figure.id %>">Details</a></td>
-        <td><form
-          action="figures/<%= figure.id %>?_method=DELETE"
-          method="POST"
-        >
-          <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-        </form></td>
-      </tr>
-
-      <% }) %>
-    </table>
+<table id="actionFigures">
+  <tr>
+    <th>Image</th>
+    <th>Name</th>
+    <th>Toy Line</th>
+    <th>Year</th>
+    <th>In Collection?</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% figures.forEach(figure => { %>
+  <tr>
+    <td>
+      <% if (figure.image[0].src !== undefined) { %>
+      <li>
+        <center><img src="../..<%=figure.image[0].src %>" width="100px" </center>
+      </li>
+      <% } %></td>
+    <td><%= figure.name %></td>
+    <td><%= figure.toyLine %></td>
+    <td><%= figure.year %></td>
+    <td><%= figure.doHave %></td>
+    <td><a href="figures/<%= figure.id %>">Details</a></td>
+    <td>
+      <form action="figures/<%= figure.id %>?_method=DELETE" method="POST">
+        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+      </form>
+    </td>
+  </tr>
+  <% }) %>
+</table>
