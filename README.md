@@ -52,9 +52,4 @@ This application helps vintage action figure collectors manage their collection 
 - Collapse index table by toyline and also by year
 
 ## Known issues
-<<<<<<< HEAD
 - Editing a character that has an image without reassigning the image will delete the image
-=======
-- Editing a character that has an image without reassigning the image will delete the image
-
->>>>>>> aae40e1151e07acda3821f6ae29a8883ea227c8c
