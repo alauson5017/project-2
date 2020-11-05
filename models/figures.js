@@ -18,6 +18,7 @@ const accessorySchema = new mongoose.Schema(
       // accessoryCondition: String,
       // doWant: Boolean,
       doHave: Boolean,
+      image: [imageSchema]
     },
     { timestamps: true }
   );

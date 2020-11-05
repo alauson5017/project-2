@@ -1,32 +1,38 @@
 <h1>Add New Action Figure</h1>
-<form action='/figures' method="POST" >
-<div class="form-group">
-    <label for="name">Name</label>
-    <input type="text" class="form-control" id="name" name="name" />
-    
-    <select class="selectpicker" data-style="btn-info" name="toyLine" id="toyLine">
-        <optgroup label="Select Table">
-            <option value="">Select Toy Line</option>
-            <% toyLineName.forEach(function(line){ %>
-            <option value="<%= line.name %>"><%= line.name %></option>
-            <% }) %>
-        </optgroup>
-    </select>
+<!-- <form action='/figures' method="POST" > -->
+<form action="/figures" method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" name="name" />
 
-    <select class="ui fluid dropdown" id="year" name="year">
-        <option value="">Year</option>
-        <% toyLineName.forEach(line => { %>
-        <optgroup label="<%= line.name %>" >
-            <% line.years.forEach(year => { %>
+        <select class="selectpicker" data-style="btn-info" name="toyLine" id="toyLine">
+            <optgroup label="Select Table">
+                <option value="">Select Toy Line</option>
+                <% toyLineName.forEach(function(line){ %>
+                <option value="<%= line.name %>"><%= line.name %></option>
+                <% }) %>
+            </optgroup>
+        </select>
+
+        <select class="ui fluid dropdown" id="year" name="year">
+            <option value="">Year</option>
+            <% toyLineName.forEach(line => { %>
+            <optgroup label="<%= line.name %>">
+                <% line.years.forEach(year => { %>
                 <option> <%= year %> </option>
+                <% }); %>
+            </optgroup>
             <% }); %>
-        </optgroup>
-        <% }); %>
-     </select>
-     
-    <label for="doHave">In my collection?</label>
-    <input type="checkbox" name="doHave" id="doHave" /><br />
-    <input type="submit" class="btn btn-primary">
-</div>
-</form>
+        </select>
 
+        <label for="doHave">In my collection?</label>
+        <input type="checkbox" name="doHave" id="doHave" /><br />
+
+
+        <label for="image">Upload Image</label>
+        <input type="file" id="image" name="image" value=" ">
+
+
+        <br /><input type="submit" class="btn btn-primary">
+    </div>
+</form>

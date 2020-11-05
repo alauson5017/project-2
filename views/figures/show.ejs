@@ -1,60 +1,84 @@
-<h1><%= figure.name %> </h1>
 <span>
     <div>
-        Name:  <%= figure.name %>
-        <br />Year:  <%= figure.year %> 
-        <br />Toy Line:  <%= figure.toyLine %> 
-        <br />In my collection:  <%= figure.doHave %>
-        <br /><a href="/figures/<%= figure.id %>/edit">edit</a>
-        <br />
-        <form action="/figures/<%= figure.id %>?_method=DELETE" method="POST">
-            <button type="submit" class="btn btn-danger btn-sm">Delete <%= figure.name %></button>
-        </form>
-    </div>
-    <div> 
-        <h2><%= figure.name %>'s Accessories</h1>
-        <ul>
-            <% figure.accessories.forEach(accessory => { %>
-                <li>
-                    <a href="/figures/<%= figure.id %>/accessories/<%= accessory.id %>/edit"><%= accessory.accessoryName %></a>
-                    <form
-                        action="/figures/<%= figure.id %>/accessories/<%= accessory.id %>?_method=DELETE"
-                        method="POST">
-                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+        <h2><%= figure.name %> </h2>
+        <table id="actionFigures">
+            <tr>
+                <th>Name</th>
+                <th>Toy Line</th>
+                <th>Year</th>
+                <th>In Collection?</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <td> <%= figure.name %></td>
+                <td><%= figure.toyLine %></td>
+                <td><%= figure.year %></td>
+                <td><%= figure.doHave %></td>
+                <td><a href="/figures/<%= figure.id %>/edit">Edit</a></td>
+                <td>
+                    <form action="/figures/<%= figure.id %>?_method=DELETE" method="POST">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete <%= figure.name %></button>
                     </form>
-                </li>
-            <% }) %>
-        </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <h2><%= figure.name %>'s Accessories</h1>
+
+            <!-- ////////////////// -->
+            <table id="actionFigures">
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>In Collection?</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <% figure.accessories.forEach(accessory => { %>
+                <tr>
+                    <td>
+                        <% if (accessory.image.length > 0) { %>
+
+                        <li>
+                            <center><img src="../..<%= accessory.image[0].src %>" width="100px" height="100px"></center>
+                        </li>
+                        <% } %>
+                    </td>
+                    <td><%= accessory.accessoryName %></td>
+                    <td><%= accessory.doHave %></td>
+                    <td><a href="/figures/<%= figure.id %>/accessories/<%= accessory.id %>/edit">Edit</a></td>
+                    <td>
+                        <form action="/figures/<%= figure.id %>/accessories/<%= accessory.id %>?_method=DELETE"
+                            method="POST">
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                <% }) %>
+            </table>
     </div>
 </span>
 <span>
-    <div> 
+    <div>
         <ul>
             <% if(figure.image.length > 0) { %>
-                <% figure.image.forEach((image)=> { %>
-                    <%   if (image.imgType === "main") {  %>
-                    <li>
-                        <img src="../..<%= image.src %>" max-width="300px">
-                    </li>
-                    <% } %>
-                <% }); %>
+            <% figure.image.forEach((image)=> { %>
+            <%   if (image.imgType === "main") {  %>
+            <li>
+                <center><img src="../..<%= image.src %>" height="300px"></center>
+            </li>
+            <% } %>
+            <% }); %>
             <% } %>
         </ul>
 
-        <form action="/figures/<%= figure.id %>" method="POST" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="image">Upload Image</label> 
-                <input type="text" id="name" 
-                name="name" value=""> 
-                <input type="file" id="image" 
-                       name="image" value=""> 
-                <input type="submit" class="btn btn-primary"></input>
-            </div>
-        </form>
-    </div> 
+
+    </div>
     <div>
         <h2>Add Accessory</h2>
-        <form action="/figures/<%= figure.id %>/accessories" method="POST">
+        <!-- <form action="/figures/figure.id %>/accessories" method="POST">
             <div class="form-group">
             <label for="accessoryName">Accessory Name</label>
             <input type="text" class="form-control" id="accessoryName" name="accessoryName" />
@@ -62,7 +86,19 @@
             <input type="checkbox" name="doHave" id="doHave" /><br />
             <input type="submit" class="btn btn-primary"></input>
             </div>
+        </form> -->
+        <form action="/figures/<%= figure.id %>/accessories" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="accessoryName">Accessory Name</label>
+                <input type="text" class="form-control" id="accessoryName" name="accessoryName" />
+                <label for="doHave">Do I have it?</label>
+                <input type="checkbox" name="doHave" id="doHave" /><br />
+                <label for="image">Upload Image</label>
+                <!-- <input type="text" id="name" 
+                name="name" value="">  -->
+                <input type="file" id="image" name="image" value="">
+                <input type="submit" class="btn btn-primary">
+            </div>
         </form>
     </div>
 </span>
-

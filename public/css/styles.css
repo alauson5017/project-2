@@ -40,7 +40,7 @@ span {
     justify-content: space-evenly;
   }
   span div {
-  padding: 30px;
+  padding: 10px;
    max-width: 40%;
    min-width: 500px;
 }
@@ -49,7 +49,7 @@ a {
   color: cornflowerblue;
   text-decoration: none;
   text-shadow: 1px 1px 1px black;
-  font-size: 1.5em;
+  font-size: 1.2 em;
   background: rgba(193, 235, 187, 0.9);
   /* padding: .25em;
   margin: .5em; */

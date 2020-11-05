@@ -1,23 +1,22 @@
 <h1>Edit <%= figure.name %>'s Accessories</h1>
 <h4>Edit Accessory</h4>
-<form
-  action="/figures/<%= figure.id %>/accessories/<%= accessory.id %>?_method=PUT"
-  method="POST"
->
+<% if (accessory.image.length > 0) { %>
+<img src="../../../..<%=accessory.image[0].src %>">
+<% } %>
+<form action="/figures/<%= figure.id %>/accessories/<%= accessory.id %>?_method=PUT"" method="POST"
+  enctype="multipart/form-data">
   <div class="form-group">
-      <label for="accessoryName">Accessory Name
-        <input
-        type="text"
-        class="form-control"
-        id="accessoryName"
-        name="accessoryName"
-        value="<%= accessory.accessoryName %>"
-        /></label>
-        <label for="doHave">Do I have it?</label>
-        <input type="checkbox" name="doHave" id="doHave" <% if
+    <label for="accessoryName">Accessory Name
+      <input type="text" class="form-control" id="accessoryName" name="accessoryName"
+        value="<%= accessory.accessoryName %>" /></label>
+    <br><label for="doHave">Do I have it?</label>
+    <input type="checkbox" name="doHave" id="doHave" <% if
         (accessory.doHave === true) { %> checked <% } %> />
     </label>
+    <br />
+    <label for="image">Upload Image</label>
+    <input type="file" id="image" name="image" value="">
   </div>
   <br />
   <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+</form>
