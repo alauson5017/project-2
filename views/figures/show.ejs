@@ -15,7 +15,7 @@
                 <td><%= figure.toyLine %></td>
                 <td><%= figure.year %></td>
                 <td><%= figure.doHave %></td>
-                <td><a href="/figures/<%= figure.id %>/edit">Edit</a></td>
+                <td><a type="button" class="btn btn-primary btn-sm" href="/figures/<%= figure.id %>/edit">Edit</a></td>
                 <td>
                     <form action="/figures/<%= figure.id %>?_method=DELETE" method="POST">
                         <button type="submit" class="btn btn-danger btn-sm">Delete <%= figure.name %></button>
@@ -45,7 +45,8 @@
                     </td>
                     <td><%= accessory.accessoryName %></td>
                     <td><%= accessory.doHave %></td>
-                    <td><a href="/figures/<%= figure.id %>/accessories/<%= accessory.id %>/edit">Edit</a></td>
+                    <td><a type="button" class="btn btn-primary btn-sm"
+                            href="/figures/<%= figure.id %>/accessories/<%= accessory.id %>/edit">Edit</a></td>
                     <td>
                         <form action="/figures/<%= figure.id %>/accessories/<%= accessory.id %>?_method=DELETE"
                             method="POST">
@@ -61,13 +62,13 @@
     <div>
         <ul>
             <% if(figure.image.length > 0) { %>
-                <% figure.image.forEach((image)=> { %>
-                    <%   if (image.imgType === "main") {  %>
-                        <li>
-                            <center><img src="../..<%= image.src %>" height="300px"></center>
-                        </li>
-                    <% } %>
-                <% }); %>
+            <% figure.image.forEach((image)=> { %>
+            <%   if (image.imgType === "main") {  %>
+            <li>
+                <center><img src="../..<%= image.src %>" height="300px"></center>
+            </li>
+            <% } %>
+            <% }); %>
             <% } %>
         </ul>
     </div>
@@ -77,12 +78,16 @@
             <div class="form-group">
                 <label for="accessoryName">Accessory Name</label>
                 <input type="text" class="form-control" id="accessoryName" name="accessoryName" />
+            </div>
+            <div class="form-check">
                 <label for="doHave">Do I have it?</label>
                 <input type="checkbox" name="doHave" id="doHave" /><br />
+            </div>
+            <div class="form-group">
                 <label for="image">Upload Image</label>
                 <input type="file" id="image" name="image" value="">
-                <input type="submit" class="btn btn-primary">
             </div>
+            <input type="submit" class="btn btn-primary">
         </form>
     </div>
 </span>

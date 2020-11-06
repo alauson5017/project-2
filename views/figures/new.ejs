@@ -3,16 +3,24 @@
     <div class="form-group">
         <label for="name">Name</label>
         <input type="text" class="form-control" id="name" name="name" />
-        <select class="selectpicker" data-style="btn-info" name="toyLine" id="toyLine">
+    </div>
+    <!-- using the toyLines DB to prepopulate  -->
+    <div class="form-group">
+        <label for="toyLine">Select Toy Line</label>
+        <select class="form-control" data-style="btn-info" name="toyLine" id="toyLine" style="width: 300px;">
             <optgroup label="Select Table">
-                <option value="">Select Toy Line</option>
+                <option value="">---</option>
                 <% toyLineName.forEach(function(line){ %>
                 <option value="<%= line.name %>"><%= line.name %></option>
                 <% }) %>
             </optgroup>
         </select>
-        <select class="ui fluid dropdown" id="year" name="year">
-            <option value="">Year</option>
+    </div>
+    <!-- using the toyLines DB to prepopulate  -->
+    <div class="form-group">
+        <label for="year">Select Year</label>
+        <select class="form-control" id="year" name="year" style="width: 300px;">
+            <option value="">----</option>
             <% toyLineName.forEach(line => { %>
             <optgroup label="<%= line.name %>">
                 <% line.years.forEach(year => { %>
@@ -21,10 +29,15 @@
             </optgroup>
             <% }); %>
         </select>
+    </div>
+    <div class="form-check">
+        <input type="checkbox" name="doHave" id="doHave" />
         <label for="doHave">In my collection?</label>
-        <input type="checkbox" name="doHave" id="doHave" /><br />
+    </div>
+    <div class="form-group">
         <label for="image">Upload Image</label>
         <input type="file" id="image" name="image" value=" ">
-        <br /><input type="submit" class="btn btn-primary">
     </div>
+
+    <input type="submit" class="btn btn-primary">
 </form>

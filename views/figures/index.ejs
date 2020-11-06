@@ -12,6 +12,7 @@
   <% figures.forEach(figure => { %>
   <tr>
     <td>
+      <!-- only display an image if one is present -->
       <% if (figure.image[0].src !== undefined) { %>
       <li>
         <center><img src="../..<%=figure.image[0].src %>" width="100px" </center>
@@ -21,7 +22,8 @@
     <td><%= figure.toyLine %></td>
     <td><%= figure.year %></td>
     <td><%= figure.doHave %></td>
-    <td><a href="figures/<%= figure.id %>">Details</a></td>
+
+    <td><a type="button" class="btn btn-secondary" href="figures/<%= figure.id %>">Info</a></td>
     <td>
       <form action="figures/<%= figure.id %>?_method=DELETE" method="POST">
         <button type="submit" class="btn btn-danger btn-sm">Delete</button>

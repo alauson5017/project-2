@@ -133,22 +133,6 @@ router.post('/:figureId/accessories', upload.single('image'), (req, res, next) =
     });
 });
 
-// // CREATE Image EMBEDDED IN Figure
-// Uploading the image 
-// router.post('/:id', upload.single('image'), (req, res, next) => { 
-//     const imgObj = {
-//         src: path.join( '/uploads/' + req.file.filename),
-//         contentType: req.file.mimetype,
-//         imgType: "main"
-//     }
-//     ActionFigure.findOneAndUpdate({"_id": req.params.id},
-//     {$set: {"image": imgObj}}, (error) => {
-
-
-//             res.redirect(`/figures/${req.params.id}`);
-//         });
-//     });
-
 /// UPDATE action figure route
 router.put('/:id', upload.single('image'), (req, res, next) => {
     if (req.body.doHave === 'on') {

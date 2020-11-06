@@ -37,7 +37,9 @@ This application helps vintage action figure collectors manage their collection 
 - As a user, I can navigate back to the index view from any page
 
 ## Stretch
-- ability to add images
+- ability to add images *Completed
+- use EJS Partials *Completed
+- Leverage Bootstrap *Completed
 - collapsed groupings on index page...ie: year
 - playsets and vehicle models
 - A user should be able to filter by action figures they are trying to collect or action figures they have in index view
